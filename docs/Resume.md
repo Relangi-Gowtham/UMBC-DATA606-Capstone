@@ -1,6 +1,6 @@
 # Gowtham Krishna Sai Relangi
 
-![Gowtham's Headshot Photo](photo.png)
+![Gowtham's Headshot Photo](headshot_photo.png)
 
 **Contact**
 * **Phone:** +1 (410) 710 3310
