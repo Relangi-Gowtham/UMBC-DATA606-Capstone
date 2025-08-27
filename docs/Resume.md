@@ -1,6 +1,6 @@
 # Gowtham Krishna Sai Relangi
 
-[Your Headshot Photo] (Upload your image to the repository and link it here)
+![Gowtham's Headshot Photo](headshot_photo.png)
 
 **Contact**
 * **Phone:** +1 (410) 710 3310
