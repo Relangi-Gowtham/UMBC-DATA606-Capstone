@@ -13,7 +13,7 @@
 
 ### **University of Maryland, Baltimore County (UMBC)**, Baltimore, MD
 * Master of Professional Studies in Data Science
-* **GPA:** 3.95/4.00
+* **GPA:** 3.967/4.00
 * **Dates:** Jan 2024 - Dec 2025
 
 ### **Sathyabama Institute of Science and Technology**, Chennai, India
