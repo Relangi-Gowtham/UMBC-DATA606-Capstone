@@ -62,7 +62,7 @@ I put together this sheet to keep track of what each column means.
 | `PaperlessBilling`| String | Do they use paperless billing? | "Yes", "No" |
 | `PaymentMethod` | String | How do they pay? | "Electronic check", "Mailed check", "Bank transfer (automatic)", "Credit card (automatic)"|
 | `MonthlyCharges` | Float | What they're charged each month. | 18.25 to 118.75 |
-| `TotalCharges` | Float | The total amount they've been charged so far. | Continuous numerical values |
+| `TotalCharges` | String | The total amount they've been charged so far. | Continuous numerical values |
 | `Churn` | String | Did they leave the company last month? | "Yes", "No" |
 
 ### My Target & Features
