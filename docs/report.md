@@ -1,4 +1,4 @@
-# UMBC DATA606 Capstone Project - Proposal
+# UMBC DATA606 Capstone Project
 ---
 
 ## 1. Title and Author
