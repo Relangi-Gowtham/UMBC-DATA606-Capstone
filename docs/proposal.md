@@ -68,3 +68,79 @@ I put together this sheet to keep track of what each column means.
 ### My Target & Features
 * **My Target:** I’ve chosen **`Churn`** as the variable I want to predict. It's the most important one for my model!
 * **My Features:** All the other columns, except for the `customerID`, are the features I'll use to train my model. They're what will help me make the churn prediction.
+
+---
+
+## 4. Exploratory Data Analysis (EDA) & Data Preprocessing
+
+### 4.1 Data Cleaning and Initial Observations
+
+The dataset was initially loaded into a pandas DataFrame, revealing a structure of 7,043 rows and 21 columns [1]. A first look at the data revealed that the `customerID` column is a unique identifier and not a useful feature for prediction, so it was dropped [9]. All other columns appeared to have no missing values [12], with the exception of the `TotalCharges` column, which contained 11 blank entries [14].
+
+Upon further investigation, it was discovered that these blank entries corresponded to customers with a tenure of 0 months. This indicates that these are new customers who have not yet been billed. A logical approach was to replace these missing values with 0.0, as they have not yet incurred any total charges [16]. This allowed the `TotalCharges` column to be converted to a numeric (float) data type for analysis [17, 18].
+
+### 4.2 Data Visualization and Insights
+
+Visual analysis was performed to understand the distribution of different features and their relationship with customer churn.
+
+#### 4.2.1 Numerical Features
+
+The dataset contains three numerical features: `tenure`, `MonthlyCharges`, and `TotalCharges`. Histograms and box plots were used to examine their distributions.
+
+* **Tenure**: The tenure of customers is relatively widespread, with notable peaks at the beginning (new customers) and the end (long-term customers) of the distribution. This bimodal-like distribution suggests two distinct customer groups: new, potentially more volatile customers, and loyal, long-standing ones. The mean tenure is around 32.37 months, while the median is 29 months [23].
+
+    ![Histogram of Tenure](https://i.imgur.com/39m994U.png)
+    *Histogram showing the distribution of customer tenure in months.*
+
+    ![Box Plot of Tenure](https://i.imgur.com/CjG2h1m.png)
+    *Box plot of tenure, confirming a median around 29 months with no significant outliers.*
+
+* **Monthly Charges**: The monthly charges show a left-skewed distribution, with a large number of customers clustered in the lower charge brackets (around $20-$30) and another significant group paying higher monthly fees (around $70-$110). This indicates different service tiers or packages are popular among customers.
+
+    ![Histogram of Monthly Charges](https://i.imgur.com/2s3dK3r.png)
+    *Histogram showing the distribution of monthly charges.*
+
+    ![Box Plot of Monthly Charges](https://i.imgur.com/J3x6l8E.png)
+    *Box plot of monthly charges, illustrating the data is evenly spread with no outliers.*
+
+* **Total Charges**: The total charges are heavily right-skewed, which is expected since this value accumulates over time. Longer-tenured customers naturally have higher total charges.
+
+    ![Histogram of Total Charges](https://i.imgur.com/rN41R0a.png)
+    *Histogram showing the distribution of total charges.*
+
+    ![Box Plot of Total Charges](https://i.imgur.com/rS5uT4z.png)
+    *Box plot of total charges, showing a right-skewed distribution with no outliers.*
+
+* **Correlation Analysis**: A correlation heatmap revealed a strong positive correlation between `tenure` and `TotalCharges` (0.83), which is intuitive as longer tenure leads to higher cumulative charges. A moderate positive correlation also exists between `MonthlyCharges` and `TotalCharges` (0.65). These relationships are logical and confirm expected patterns in the data.
+
+    ![Correlation Heatmap](https://i.imgur.com/h5m9c4E.png)
+    *Correlation heatmap of numerical features.*
+
+#### 4.2.2 Categorical Features and Target Variable
+
+The dataset contains several categorical features describing customer demographics and service subscriptions.
+
+* **Customer Demographics**: The gender distribution is nearly equal, and the dataset includes both senior and non-senior citizens. A significant portion of customers have partners and dependents.
+* **Service Subscriptions**: Most customers have phone service. Internet service is dominated by Fiber optic and DSL connections. Services like Online Security, Online Backup, Device Protection, and Tech Support show a "No" or "No internet service" response for a large number of customers, indicating potential areas for upselling.
+* **Contract and Payment**: A large number of customers are on a Month-to-month contract, which is often associated with higher churn rates. Electronic check is the most popular payment method.
+
+    ![Count Plot of Contract](https://i.imgur.com/g9iUjP9.png)
+    *Count plot showing the distribution of customers across different contract types.*
+
+    ![Count Plot of Payment Method](https://i.imgur.com/5lG2t1S.png)
+    *Count plot showing the distribution of customers by payment method.*
+
+* **Target Variable - Churn**: The `Churn` variable, our target for prediction, exhibits a class imbalance. Approximately 27% of the customers in the dataset have churned ("Yes"), while 73% have not ("No"). This imbalance is a critical factor to consider during model training, as it can bias the model towards the majority class and improves its ability to predict churn events.
+
+    ![Count Plot of Churn](https://i.imgur.com/Xw5hS4C.png)
+    *Count plot showing the distribution of the target variable, "Churn".*
+
+### 4.3 Data Preparation for Modeling
+
+To prepare the data for machine learning models, the following steps were taken:
+
+1.  **Label Encoding**: Categorical features were converted into numerical representations. For binary features like 'gender' and 'Partner', "Yes" and "No" were mapped to 1 and 0, respectively. For features with more than two categories, like 'InternetService', each unique value was assigned a distinct integer. These encoders are saved to a file (`encoders.pkl`) for later use in deploying the model on new, unseen data [43].
+
+2.  **Handling Class Imbalance**: The target variable, `Churn`, is imbalanced, with significantly more "No" instances than "Yes." To address this, the **Synthetic Minority Over-sampling Technique (SMOTE)** was applied to the training data. SMOTE works by creating synthetic examples of the minority class (in this case, "Yes"), thereby balancing the class distribution and helping the model learn the characteristics of both classes more effectively. This prevents the model from being biased towards the majority class and improves its ability to predict churn events.
+
+3.  **Data Splitting**: The dataset was split into training and testing sets in an 80:20 ratio. The models will be trained on the training set and evaluated on the unseen test set to assess their real-world performance [39]. The SMOTE technique was applied **only** to the training data to avoid data leakage and ensure that the test set remains a true representation of the original data distribution [40, 41].
