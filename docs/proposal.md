@@ -89,31 +89,31 @@ The dataset contains three numerical features: `tenure`, `MonthlyCharges`, and `
 
 * **Tenure**: The tenure of customers is relatively widespread, with notable peaks at the beginning (new customers) and the end (long-term customers) of the distribution. This bimodal-like distribution suggests two distinct customer groups: new, potentially more volatile customers, and loyal, long-standing ones. The mean tenure is around 32.37 months, while the median is 29 months.
 
-    ![Histogram of Tenure](docs/eda/newplot.png)
+    ![Histogram of Tenure](eda/newplot.png)
     *Histogram showing the distribution of customer tenure in months.*
 
-    ![Box Plot of Tenure](docs/eda/newplot (3).png)
+    ![Box Plot of Tenure](eda/newplot(3).png)
     *Box plot of tenure, confirming a median around 29 months with no significant outliers.*
 
 * **Monthly Charges**: The monthly charges show a left-skewed distribution, with a large number of customers clustered in the lower charge brackets (around $20-$30) and another significant group paying higher monthly fees (around $70-$110). This indicates different service tiers or packages are popular among customers.
 
-    ![Histogram of Monthly Charges](docs/eda/newplot (1).png)
+    ![Histogram of Monthly Charges](eda/newplot(1).png)
     *Histogram showing the distribution of monthly charges.*
 
-    ![Box Plot of Monthly Charges](docs/eda/newplot (4).png)
+    ![Box Plot of Monthly Charges](eda/newplot(4).png)
     *Box plot of monthly charges, illustrating the data is evenly spread with no outliers.*
 
 * **Total Charges**: The total charges are heavily right-skewed, which is expected since this value accumulates over time. Longer-tenured customers naturally have higher total charges.
 
-    ![Histogram of Total Charges](docs/eda/newplot (2).png)
+    ![Histogram of Total Charges](eda/newplot(2).png)
     *Histogram showing the distribution of total charges.*
 
-    ![Box Plot of Total Charges](docs/eda/newplot (5).png)
+    ![Box Plot of Total Charges](eda/newplot(5).png)
     *Box plot of total charges, showing a right-skewed distribution with no outliers.*
 
 * **Correlation Analysis**: A correlation heatmap revealed a strong positive correlation between `tenure` and `TotalCharges` (0.83), which is intuitive as longer tenure leads to higher cumulative charges. A moderate positive correlation also exists between `MonthlyCharges` and `TotalCharges` (0.65). These relationships are logical and confirm expected patterns in the data.
 
-    ![Correlation Heatmap](docs/eda/newplot (6).png)
+    ![Correlation Heatmap](eda/newplot(6).png)
     *Correlation heatmap of numerical features.*
 
 #### 4.2.2 Categorical Features and Target Variable
@@ -124,15 +124,15 @@ The dataset contains several categorical features describing customer demographi
 * **Service Subscriptions**: Most customers have phone service. Internet service is dominated by Fiber optic and DSL connections. Services like Online Security, Online Backup, Device Protection, and Tech Support show a "No" or "No internet service" response for a large number of customers, indicating potential areas for upselling.
 * **Contract and Payment**: A large number of customers are on a Month-to-month contract, which is often associated with higher churn rates. Electronic check is the most popular payment method.
 
-    ![Count Plot of Contract](docs/eda/newplot (8).png)
+    ![Count Plot of Contract](eda/newplot(8).png)
     *Count plot showing the distribution of customers across different contract types.*
 
-    ![Count Plot of Payment Method](docs/eda/newplot (7).png)
+    ![Count Plot of Payment Method](eda/newplot(7).png)
     *Count plot showing the distribution of customers by payment method.*
 
 * **Target Variable - Churn**: The `Churn` variable, our target for prediction, exhibits a class imbalance. Approximately 27% of the customers in the dataset have churned ("Yes"), while 73% have not ("No"). This imbalance is a critical factor to consider during model training, as it can bias the model towards the majority class and improves its ability to predict churn events.
 
-    ![Count Plot of Churn](docs/eda/newplot (9).png)
+    ![Count Plot of Churn](eda/newplot(9).png)
     *Count plot showing the distribution of the target variable, "Churn".*
 
 ### 4.3 Data Preparation for Modeling
