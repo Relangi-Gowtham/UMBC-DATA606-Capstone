@@ -9,7 +9,7 @@
 * **My GitHub Repo:** [https://github.com/Relangi-Gowtham/UMBC-DATA606-Capstone]
 * **My LinkedIn Profile:** [www.linkedin.com/in/gowtham-krishna-sai-relangi-8392691b5]
 * **My Presentation:** [https://github.com/Relangi-Gowtham/UMBC-DATA606-Capstone/blob/main/docs/Final_Presentation.pptx]
-* **My YouTube Video:** [Soon to be uploaded]
+* **My YouTube Video:** [https://youtu.be/X56UbMIcb-0]
 
 ---
 
