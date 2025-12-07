@@ -8,7 +8,7 @@
 * Prepared for the UMBC Data Science Master's Capstone, supervised by Dr. Chaojie (Jay) Wang.
 * **My GitHub Repo:** [https://github.com/Relangi-Gowtham/UMBC-DATA606-Capstone]
 * **My LinkedIn Profile:** [www.linkedin.com/in/gowtham-krishna-sai-relangi-8392691b5]
-* **My Presentation:** [Soon to be uploaded]
+* **My Presentation:** [docs/Final_Presentation.pptx]
 * **My YouTube Video:** [Soon to be uploaded]
 
 ---
