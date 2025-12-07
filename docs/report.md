@@ -144,3 +144,82 @@ To prepare the data for machine learning models, the following steps were taken:
 2.  **Handling Class Imbalance**: The target variable, `Churn`, is imbalanced, with significantly more "No" instances than "Yes." To address this, the **Synthetic Minority Over-sampling Technique (SMOTE)** was applied to the training data. SMOTE works by creating synthetic examples of the minority class (in this case, "Yes"), thereby balancing the class distribution and helping the model learn the characteristics of both classes more effectively. This prevents the model from being biased towards the majority class and improves its ability to predict churn events.
 
 3.  **Data Splitting**: The dataset was split into training and testing sets in an 80:20 ratio. The models will be trained on the training set and evaluated on the unseen test set to assess their real-world performance. The SMOTE technique was applied **only** to the training data to avoid data leakage and ensure that the test set remains a true representation of the original data distribution.
+
+---
+
+## 5. Model Training
+
+### 5.1 Models Selected for Predictive Analytics
+For this project, three classification models were selected to predict customer churn. These models offer a progression from simple and interpretable to complex and highly performant ensemble methods:
+* **Decision Tree Classifier:** Chosen as a baseline model for its interpretability and ability to capture non-linear relationships.
+* **Random Forest Classifier:** An ensemble method that builds multiple decision trees. It was selected to improve predictive accuracy and reduce overfitting compared to a single Decision Tree.
+* **XGBoost (Extreme Gradient Boosting) Classifier:** A highly optimized gradient boosting algorithm known for its speed and superior performance on structured tabular datasets.
+
+### 5.2 Training Methodology
+The training process involved the following key steps:
+* **Train-Test Split:** The dataset was divided into training and testing sets using an **80/20 split** (80% training, 20% testing). This ratio ensures a substantial amount of data for model learning while reserving a sufficient portion for validating performance on unseen data.
+* **Handling Class Imbalance (SMOTE):** During the EDA phase, a significant class imbalance was identified, with "No Churn" instances far outnumbering "Churn" instances. To address this, the **Synthetic Minority Over-sampling Technique (SMOTE)** was applied. Crucially, SMOTE was applied **only to the training data** to prevent data leakage and ensure that the test set remained a realistic representation of the original data distribution.
+
+### 5.3 Python Packages & Environment
+The project was implemented using the following Python libraries and development environment:
+* **Python Packages:**
+    * `pandas` & `numpy`: For data manipulation and numerical operations.
+    * `scikit-learn`: For implementing Decision Tree and Random Forest models, splitting the dataset (`train_test_split`), and calculating evaluation metrics (`accuracy_score`, `confusion_matrix`, `classification_report`).
+    * `xgboost`: Specifically for the XGBoost Classifier implementation.
+    * `imblearn` (imbalanced-learn): For applying the SMOTE technique to balance the training data.
+    * `plotly`: For creating interactive visualizations to analyze model performance.
+* **Development Environment:** The project was developed and executed in **Google Colab**, a cloud-based Jupyter notebook environment that provides pre-installed data science libraries and free access to computing resources.
+
+### 5.4 Performance Measurement
+To measure and compare the effectiveness of the models, the following metrics were used:
+* **Accuracy Score:** To assess the overall correctness of the model's predictions.
+* **Precision, Recall, and F1-Score:** Given the imbalanced nature of the dataset (churn is the minority class), accuracy alone can be misleading. Therefore, particular attention was paid to the **Recall** and **F1-Score** for the "Churn" class (1). High recall is essential in this context to ensure the model successfully identifies as many at-risk customers as possible.
+* **Confusion Matrix:** To visualize the true positives, true negatives, false positives, and false negatives, providing a detailed breakdown of where the model is making errors.
+
+---
+
+## 6. Application of the Trained Models
+
+To make the predictive model accessible to end-users, I developed a web application using **Streamlit**. This framework was selected for its simplicity and seamless integration with Python's data science stack.
+
+**Key Features & Implementation:**
+* **User Interface:** The app features a sidebar for users to input customer demographics and service details. It helps ensure data consistency by automatically calculating derived features like `TotalCharges`.
+* **Real-Time Prediction:** The application loads the pre-trained **Random Forest Classifier** and label encoders using `pickle`. It preprocesses the user inputs on the fly to generate instant predictions.
+* **Visual Results:** The output clearly displays the predicted outcome ("Churn" or "No Churn") along with probability scores, providing users with an immediate assessment of customer risk.
+
+---
+
+## 7. Conclusion
+
+### 7.1 Project Summary & Impact
+This project successfully established a predictive analytics framework for telecommunications customer churn. By training Decision Tree, Random Forest, and XGBoost models on historical data, I identified the **Random Forest Classifier** as the most effective solution. This model was deployed into a **Streamlit web application**, transforming complex analytics into a practical, real-time decision-support tool for stakeholders to proactively retain at-risk customers.
+
+### 7.2 Limitations
+* **Static Data:** The model is built on a snapshot of data and does not account for real-time market changes or recent competitor actions.
+* **Feature Gaps:** The dataset lacks granular usage metrics (e.g., daily call logs, support chat transcripts) which could enhance accuracy.
+* **Class Imbalance:** Despite mitigation efforts, the scarcity of "Churn" examples remains a challenge for achieving optimal recall.
+
+### 7.3 Lessons Learned
+* **Data Balancing:** Addressing class imbalance via **SMOTE** was crucial for the model to effectively detect the minority churn class, proving that accuracy alone is insufficient.
+* **End-to-End Implementation:** The project highlighted that model value is realized only through deployment. Building the Streamlit app bridged the gap between technical code and business usability.
+
+### 7.4 Future Directions
+* **Unstructured Data:** Integrating text analysis from customer support logs could provide deeper insights into dissatisfaction.
+* **Advanced Modeling:** Future work could explore Deep Learning (e.g., Neural Networks) to capture complex non-linear patterns.
+* **Cloud Deployment:** Deploying the app to a cloud platform (e.g., AWS, Heroku) with automated retraining pipelines would ensure the model stays current.
+
+---
+
+## 8. References
+
+**1. Scikit-learn Documentation**
+* The core machine learning library used for data preprocessing (`LabelEncoder`), model implementation (Decision Tree, Random Forest), and performance evaluation metrics.
+* *Link:* [https://scikit-learn.org/stable/](https://scikit-learn.org/stable/)
+
+**2. Imbalanced-learn Documentation (SMOTE)**
+* Critical for the project's success, this library provided the **SMOTE** technique used to address the significant class imbalance in the training data.
+* *Link:* [https://imbalanced-learn.org/stable/](https://imbalanced-learn.org/stable/)
+
+**3. Streamlit Documentation**
+* The framework used to build and deploy the interactive web application, allowing end-users to utilize the trained model.
+* *Link:* [https://docs.streamlit.io/](https://docs.streamlit.io/)
